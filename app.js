@@ -354,7 +354,7 @@ function renderProjects(filter = "all") {
       <article class="work-item work-${project.id} ${project.featured ? "featured" : ""} reveal">
         <div class="work-card work-card-${project.id} ${project.featured ? "featured" : ""}">
           <button class="card-main" type="button" data-project="${project.id}">
-            <img src="${project.cover}" alt="${project.title}" loading="lazy" />
+          <img src="${project.cover}" alt="${project.title}" loading="lazy" decoding="async" />
             <span class="card-copy">
               <span class="card-type">${project.type}</span>
               <h3>${project.title}</h3>

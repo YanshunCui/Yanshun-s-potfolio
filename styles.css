@@ -21663,6 +21663,83 @@ h2 {
   z-index: -1 !important;
 }
 
+/* Mobile hardening: prevent the work heading from creating page-wide horizontal scroll. */
+@media (max-width: 760px) {
+  main {
+    overflow-x: clip;
+  }
+
+  .section-head h2 {
+    white-space: normal;
+    font-size: clamp(28px, 8vw, 40px);
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+}
+
+/* Mobile hardening: keep project descriptions reachable below the artwork gallery. */
+@media (max-width: 920px) {
+  .project-modal.open .modal-card {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: minmax(0, 1fr) minmax(0, 34vh) !important;
+    overflow: hidden !important;
+  }
+
+  .project-modal.open .modal-body {
+    display: flex !important;
+    min-height: 0;
+    max-height: none;
+    padding: 20px 18px 24px;
+    overflow-y: auto;
+  }
+
+  .project-modal.open.modal-qr-fit .modal-body {
+    display: none !important;
+  }
+}
+
+/* Pre-launch hardening: keep critical copy visible on first paint and tame desktop crowding. */
+.hero-content.reveal,
+.hero-meta.reveal {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+@media (min-width: 921px) and (max-width: 1400px) {
+  .hero h1 {
+    max-width: 820px;
+    font-size: clamp(56px, 8.8vw, 120px);
+  }
+
+  .hero-content {
+    max-width: 820px;
+  }
+
+  .hero-meta {
+    gap: 12px;
+  }
+
+  .hero-meta span {
+    padding-inline: 22px;
+    font-size: clamp(15px, 1.3vw, 20px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
 /* Final hero cleanup: remove detached exhaust artifacts completely. */
 .pixel-rocket::after,
 .pixel-flame,
